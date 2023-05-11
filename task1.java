@@ -12,7 +12,7 @@ public class task1 {
         linkedli.add(new Integer(3));
         linkedli.add(new Integer(4));
         linkedli.add(new Integer(5));
-        System.out.print("Пред: " + linkedli);
+        System.out.print("До: " + linkedli);
  
         linkedli = reverseLinkedList(linkedli);
         System.out.print("\nПосле: " + linkedli);
