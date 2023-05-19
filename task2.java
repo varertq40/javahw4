@@ -3,68 +3,74 @@
 enqueue() - помещает элемент в конец очереди,
 dequeue() - возвращает первый элемент из очереди и удаляет его,
 first() - возвращает первый элемент из очереди, не удаляя. */
+
+class task2{
+    public static void main(String a[]){
+     
+    LinkedListQueue queue = new LinkedListQueue();
+    
+    queue.enqueue(6);
+    queue.enqueue(3);
+    queue.print_frontRear();
+    queue.enqueue(12);
+    queue.enqueue(24);
+    queue.dequeue();
+    queue.dequeue();
+    queue.enqueue(9);
+    
+    queue.print_frontRear();
+    }
+}
+class LinkedListQueue{
+
+    private Node front, rear; 
+    private int queueSize; 
+
+    private class Node{ 
+    int data;
+    Node next;
+    }
+  
+    public LinkedListQueue(){
+        front = null;
+        rear = null;
+        queueSize = 0;
+    }
  
-public class task2 {
-  public static void main(String[] args) {
-      Queue myQueue = new Queue();
-      myQueue.enQueue(3);
-      myQueue.enQueue(2);
-      myQueue.enQueue(1);
-      myQueue.display();
-      myQueue.deQueue();
-      myQueue.peak();
-  }
-  }
-  class Queue {
-    int queueLength = 3;
-    int items[] = new int[queueLength];
-    int front = -1;
-    int back = -1;
-    boolean isFull(){
-        if(back == queueLength - 1){
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isEmpty(){
+        return (queueSize == 0);
     }
-    boolean isEmpty(){
-        if(front == -1 && back == -1){
-            return true;
-        } else {
-            return false;
-        }
+  
+    public int dequeue(){
+        int data = front.data;
+        front = front.next;
+        if (isEmpty()){
+        rear = null;
     }
-     void enQueue(int itemValue) {
-        if(isFull()){
-            System.out.println("Очередь заполнена");
-        } else if(front == -1 && back == -1){
-            front = back = 0;
-            items[back] = itemValue;
-        } else{
-            back++;
-            items[back] = itemValue;
-        }
+
+        queueSize--;
+        System.out.println("Элемент " + data+ " снят с очереди");
+        return data;
+}
+  
+    public void enqueue(int data){
+        Node oldRear = rear;
+        rear = new Node();
+        rear.data = data;
+        rear.next = null;
+        if (isEmpty()){
+        front = rear;
     }
-     void deQueue(){
-        if(isEmpty()){
-            System.out.println("Очередь пуста. Нечего исключать из очереди.");
-        } else if (front == back){
-            front = back = -1;
-        } else {
-            front++;
-        }
+        else{
+        oldRear.next = rear;
     }
-    void display(){
-        int i;
-        if(isEmpty()){
-            System.out.println("Очередь пуста");
-        } else {
-            for(i = front; i <= back; i++){
-                System.out.println(items[i]);
-            }
-        }
+
+        queueSize++;
+        System.out.println("Элемент " + data+ " добавлен в очередь");
     }
-    void peak(){
-        System.out.println("Переднее значение: " + items[front]);
+
+    public void print_frontRear() {
+        System.out.println("Переди очереди:" + front.data 
+        + " Задняя часть очереди:" + rear.data);
     }
-  }
+}
