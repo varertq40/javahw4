@@ -1,3 +1,6 @@
+// Пусть дан LinkedList с несколькими элементами. 
+// Реалезуйте метод, который вернет "перевернутый" список.
+
 import java.util.LinkedList;
 import java.util.Collections;
 
